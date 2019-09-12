@@ -8,26 +8,34 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.keys import Keys
 
 
-def SelectBox(_xpath, _select) :
-    driver.find_element_by_xpath(_xpath).click()
+def SelectBox(_xpath, _select):
+    driver.find_element_by_xpath(_xpath).send_keys(Keys.ENTER)
 
     time.sleep(0.2)
     driver.find_element_by_link_text(_select).send_keys(Keys.ENTER)
     time.sleep(2)
 
+def getMajorName(dom):
+    return  dom.get('value')
+
+
 class_infor = []
 table_header = []
 
+
 #------------- User Info -----------
-student_id = ''
-student_pw = ''
+student_id = '201524532'
+student_pw = 'wlwhsvkdnj1!'
 pnu_url = 'https://e-onestop.pusan.ac.kr/common/login'
-samsung_id = ''
-samsung_pw = ''
+samsung_id = 'koogk7@gmail.com'
+samsung_pw = '960115!a'
 samsung_url = 'http://www.samsungcareers.com/main.html'
 
 #크롬 드라이버의 위치를 지정
-driver = webdriver.Chrome('/Applications/Django/chromedriver')
+driver = webdriver.Chrome('./util/chromedriver')
+
+driver.implicitly_wait(5)
+
 driver.get(pnu_url)
 
 #-------------PNU OneStop 성적 Parsing-------------------
@@ -36,10 +44,12 @@ driver.get(pnu_url)
 driver.find_element_by_id("id").send_keys(student_id)
 driver.find_element_by_id("pw").send_keys(student_pw)
 
+
 #Login 버튼 클릭
 driver.find_element_by_xpath('//*[@id="wrapper"]/section/div/div[2]/div[2]/form/footer/button').click()
 
-time.sleep(2)
+
+# time.sleep(2)
 
 #전체성적 조회 버튼 클릭
 driver.find_element_by_xpath('//*[@id="topMain"]/li[4]/a/span').click()
@@ -89,39 +99,61 @@ for v in html_rows:
 
 print(class_infor)
 
-#-------------Samsung Intership-------------------
+#-------------Samsung -------------------
 driver.get(samsung_url)
+
+
 #로그인화면 이동
 # driver.find_element_by_xpath('//*[@id="login"]/a[1]').click()
 # 클릭이 되지 않을 때 아래와 같이 Enter를 넣어주면 해결이 된다.
 driver.find_element_by_xpath('//*[@id="login"]/a[1]').send_keys(Keys.ENTER)
-time.sleep(1)
+# time.sleep(1)
+
 #로그인
 driver.find_element_by_xpath('//*[@id="email"]').send_keys(samsung_id)
 driver.find_element_by_xpath('//*[@id="password"]').send_keys(samsung_pw)
-# driver.find_element_by_xpath('//*[@id="budiv_mySheet_comLogin"]/a').click()
 driver.find_element_by_xpath('//*[@id="budiv_mySheet_comLogin"]/a').send_keys(Keys.ENTER)
 
 #팝업닫기
 _alert = Alert(driver)
 _alert.accept()
-time.sleep(0.2)
+# time.sleep(0.2)
 
-driver.find_element_by_xpath('//*[@id="cont"]/div[1]/ul/div/dl/dd[5]/p/span/a').send_keys(Keys.ENTER)
-time.sleep(0.2)
+driver.find_element_by_xpath('//*[@id="cont"]/div[1]/ul/div/dl/dd[1]/p/span/a').send_keys(Keys.ENTER)
+# time.sleep(0.2)
 
 driver.find_element_by_xpath('//*[@id="masTable1"]/tr/td[3]/a').send_keys(Keys.ENTER)
 _alert.accept()
-time.sleep(2)
+# time.sleep(2)
 
-driver.find_element_by_xpath('//*[@id="cont"]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/div[2]/ul/li[3]').click()
+driver.find_element_by_xpath('//*[@id="cont"]/table[1]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/div[2]/ul/li[3]/a').send_keys(Keys.ENTER)
 _alert.accept()
-time.sleep(0.1)
+# time.sleep(0.1)
 
 #정보입력
 
+time.sleep(1)
+html = driver.page_source # 페이지의 elements모두 가져오기
+soup = BeautifulSoup(html, 'html.parser') # BeautifulSoup사용하기
 
-time.sleep(2)
+
+#이전의 입력된 과목들 체크
+curri_majors = soup.select('#majdetTable .RESUME_FORM_4[name=majcurrinm]')
+curri_majors = list(map(getMajorName, curri_majors))
+
+major_bools = [True for i in range(0,len(curri_majors))]
+
+
+already_major = {
+ curri_majors:  major_bool for curri_majors, major_bool in zip(curri_majors, major_bools)
+}
+
+print(already_major)
+
+
+
+
+# time.sleep(2)
 SelectBox('//*[@id="tmp_schlcarrcdId"]', '학사')
 SelectBox('//*[@id="tmp_majcdId"]', '정보컴퓨터공학(부산대)')
 SelectBox('//*[@id="tmp_retakeynId"]', 'N(1회수강)')
@@ -131,14 +163,14 @@ cnt = 0
 for item in class_infor:
     if cnt == 10 :
         _alert.accept()
-        time.sleep(0.2)
+        # time.sleep(0.2)
         driver.find_element_by_xpath('//*[@id="budiv_mySheet_Save"]/a').send_keys(Keys.ENTER)
         cnt = 0
-        time.sleep(2)
+        # time.sleep(2)
         _alert.accept()
-        time.sleep(0.2)
+        # time.sleep(0.2)
         _alert.accept()
-        time.sleep(0.2)
+        # time.sleep(0.2)
 
     t_year = item['년도']
     t_sem = item['학기']
@@ -147,6 +179,10 @@ for item in class_infor:
     t_grade = t_grade.replace(' ','')
     t_name = item['교과목명']
     t_cate = item['교과구분']
+
+    if t_name in already_major:
+        continue
+
     if t_grade == 'U':
         t_grade = 'FAIL'
     if t_grade == 'S':
@@ -173,4 +209,4 @@ for item in class_infor:
     driver.find_element_by_xpath('//*[@id="tmp_majcurrinm"]').send_keys(t_name)
     driver.find_element_by_xpath('//*[@id="budiv_mySheet_AddMajdet"]/a').send_keys(Keys.ENTER)
     cnt +=1
-    time.sleep(2)
+    # time.sleep(2)
