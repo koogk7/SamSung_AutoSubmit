@@ -11,6 +11,7 @@
 3. 가상환경 on `source venv/bin/activate`
 4. python Build `python3 AutoSubmit.py`
 
+## 
 * 맥 환경 기준으로 작성되었기에 윈도우에서 빌드시,[여기](https://chromedriver.storage.googleapis.com/index.html?path=76.0.3809.126/)에서 크롬 드라이버를 재설치 해야합니다. 다운받은 크롬 드라이버는 utill 디렉토리 아래의 위치시켜 주세요
 * 지원서가 작성이 된 상태에서 빌드되어야 합니다.
 * 성적 입력중 프로그램이 죽을 경우 다시 빌드하면, 입력되지 않은 과목부터 순차입력됩니다.
