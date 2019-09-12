@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6355f505-40f9-4eb4-9a2d-1054d1d7e64d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/AutoSubmit.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoSubmit.py" afterDir="false" />
-    </list>
+    <list default="true" id="6355f505-40f9-4eb4-9a2d-1054d1d7e64d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AutoSubmit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="212" column="82" selection-start-line="212" selection-start-column="82" selection-end-line="212" selection-end-column="82" />
+            <state relative-caret-position="-261">
+              <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -135,12 +133,12 @@
       <option name="presentableId" value="Default" />
       <updated>1568031249971</updated>
       <workItem from="1568031251608" duration="428000" />
-      <workItem from="1568270449638" duration="3948000" />
+      <workItem from="1568270449638" duration="4696000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4376000" />
+    <option name="totallyTimeSpent" value="5124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -173,13 +171,13 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SamSung_AutoSubmit$AutoSubmit.coverage" NAME="AutoSubmit Coverage Results" MODIFIED="1568275628803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SamSung_AutoSubmit$AutoSubmit.coverage" NAME="AutoSubmit Coverage Results" MODIFIED="1568276326294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AutoSubmit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="212" column="82" selection-start-line="212" selection-start-column="82" selection-end-line="212" selection-end-column="82" />
+        <state relative-caret-position="-261">
+          <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

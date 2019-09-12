@@ -24,11 +24,11 @@ table_header = []
 
 
 #------------- User Info -----------
-student_id = '201524532'
-student_pw = 'wlwhsvkdnj1!'
+student_id = '' # 부산대 아이디
+student_pw = ''
 pnu_url = 'https://e-onestop.pusan.ac.kr/common/login'
-samsung_id = 'koogk7@gmail.com'
-samsung_pw = '960115!a'
+samsung_id = '' # 삼성 채용 아이디
+samsung_pw = ''
 samsung_url = 'http://www.samsungcareers.com/main.html'
 
 #크롬 드라이버의 위치를 지정
